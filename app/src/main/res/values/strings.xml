@@ -1,0 +1,4 @@
+<resources>
+    <string name="list_item_string">list item: %1d</string>
+    <string name="app_name">hello</string>
+</resources>
