@@ -1,6 +1,7 @@
 package com.example.alvinheng.hello
 
 import android.content.Context
+import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ class TaskAdapter(val items: ArrayList<Int>, val context: Context) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: RadioButtonHolder, position: Int) {
-        holder.radioButton.text = "wtf: ${items.get(position)}"
+        holder.radioButton.text = context.getString(R.string.list_item_string).format(items.get(position))
     }
 }
 
