@@ -12,7 +12,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var list = ArrayList((1..10).toList())
+
         randomList.layoutManager = LinearLayoutManager(this)
-        randomList.adapter = TaskAdapter(ArrayList((1..10).toList()), this)
+        randomList.adapter = TaskAdapter(list, this)
+
+        val adapter = randomList.adapter as TaskAdapter
+
+        addItem.setOnClickListener {extendList(list, adapter)}
+    }
+
+    fun extendList(list: ArrayList<Int>, adapter: TaskAdapter) {
+        list.add(list.size + 1)
+        adapter.notifyItemChanged(list.size - 1)
     }
 }
