@@ -3,6 +3,9 @@ package com.example.alvinheng.hello
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SimpleItemAnimator
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.widget.RadioButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,12 +16,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var list = ArrayList((1..10).toList())
+        var list = ArrayList((1..5).toList())
 
+        val adapter = TaskAdapter(list, this)
         randomList.layoutManager = LinearLayoutManager(this)
-        randomList.adapter = TaskAdapter(list, this)
+        randomList.adapter = adapter
 
-        val adapter = randomList.adapter as TaskAdapter
+        val callback = DragAdapter(adapter, this, ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),
+                                   ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT))
+        val helper = ItemTouchHelper(callback)
+        helper.attachToRecyclerView(randomList)
 
         addItem.setOnClickListener {extendList(list, adapter)}
     }
