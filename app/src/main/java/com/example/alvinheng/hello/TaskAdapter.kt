@@ -1,15 +1,13 @@
 package com.example.alvinheng.hello
 
 import android.content.Context
-import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.radio_button.view.*
 
-class TaskAdapter(val items: ArrayList<Int>,
+class TaskAdapter(val items: ArrayList<String>,
                   val context: Context) : RecyclerView.Adapter<RadioButtonHolder>() {
     override fun getItemCount(): Int {
         return items.size
@@ -17,12 +15,22 @@ class TaskAdapter(val items: ArrayList<Int>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RadioButtonHolder {
         return RadioButtonHolder(
-                LayoutInflater.from(context).inflate(R.layout.radio_button, parent, false))
+            LayoutInflater.from(context).inflate(R.layout.radio_button, parent, false))
     }
 
     override fun onBindViewHolder(holder: RadioButtonHolder, position: Int) {
         holder.radioButton.text =
                 context.getString(R.string.list_item_string).format(items.get(position))
+    }
+
+    fun appendItem(item: String) {
+        items.add(item)
+        notifyItemInserted(itemCount - 1)
+    }
+
+    fun editItem(position: Int, item: String) {
+        items[position] = item
+        notifyItemChanged(position)
     }
 
     fun removeItem(position: Int) {

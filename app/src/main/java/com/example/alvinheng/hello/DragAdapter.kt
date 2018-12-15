@@ -15,10 +15,11 @@ class DragAdapter(adapter: TaskAdapter, context: Context, dragDirs: Int,
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
         if (direction == ItemTouchHelper.LEFT) {
-            adapter.removeItem(viewHolder.adapterPosition)
+            adapter.removeItem(position)
         } else {
-            adapter.removeItem(viewHolder.adapterPosition)
+            adapter.removeItem(position)
         }
     }
 }

@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var list = ArrayList((1..5).toList())
+        var list = ArrayList((1..5).toList().map {it.toString()})
 
         val adapter = TaskAdapter(list, this)
         randomList.layoutManager = LinearLayoutManager(this)
@@ -30,8 +30,9 @@ class MainActivity : AppCompatActivity() {
         addItem.setOnClickListener {extendList(list, adapter)}
     }
 
-    fun extendList(list: ArrayList<Int>, adapter: TaskAdapter) {
-        list.add(list.size + 1)
-        adapter.notifyItemChanged(list.size - 1)
+    fun extendList(list: ArrayList<String>, adapter: TaskAdapter) {
+        Form(getString(R.string.form_title_add_item), this, adapter)
+//        list.add(list.size + 1)
+//        adapter.notifyItemChanged(list.size - 1)
     }
 }
