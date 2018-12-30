@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.radio_button.view.*
 
-class TaskAdapter(val items: ArrayList<String>,
-                  val context: Context) : RecyclerView.Adapter<RadioButtonHolder>() {
+class ItemAdapter(val context: Context) : RecyclerView.Adapter<RadioButtonHolder>() {
+
+    private var items = ArrayList<Item>()
+
     override fun getItemCount(): Int {
         return items.size
     }
@@ -23,12 +25,17 @@ class TaskAdapter(val items: ArrayList<String>,
                 context.getString(R.string.list_item_string).format(items.get(position))
     }
 
-    fun appendItem(item: String) {
+    fun setItems(list: ArrayList<Item>) {
+        items = list
+        notifyDataSetChanged()
+    }
+
+    fun appendItem(item: Item) {
         items.add(item)
         notifyItemInserted(itemCount - 1)
     }
 
-    fun editItem(position: Int, item: String) {
+    fun editItem(position: Int, item: Item) {
         items[position] = item
         notifyItemChanged(position)
     }

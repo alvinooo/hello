@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 
-class DragAdapter(adapter: TaskAdapter, context: Context, dragDirs: Int,
+class DragAdapter(adapter: ItemAdapter, context: Context, dragDirs: Int,
                   swipeDirs: Int) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
     var adapter = adapter
 
