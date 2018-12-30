@@ -12,7 +12,7 @@ class Form(form_title: String, var context: Context, var adapter: ItemAdapter, v
         val formLayout = LayoutInflater.from(context).inflate(R.layout.input_form, null)
         val formView = formLayout.findViewById(R.id.name_field) as EditText
 
-        titleMap.put(context.getString(R.string.form_title_add_item)) {itemName: String -> adapter.appendItem(Item(itemName))}
+        titleMap.put(context.getString(R.string.form_title_add_item)) {itemName: String -> appendItem(itemName)}
         formBuilder.setTitle(form_title)
         formBuilder.setView(formLayout)
 
