@@ -1,4 +1,7 @@
 <resources>
-    <string name="list_item_string">list item: %1d</string>
+    <string name="list_item_string">list item: %1$s</string>
     <string name="app_name">hello</string>
+    <string name="form_title_add_item">add item</string>
+    <string name="form_title_edit_item">edit item</string>
+    <string name="form_cancel_button_text">cancel</string>
 </resources>
